@@ -113,7 +113,7 @@ function update(){
   ball.x += ball.velocityx;
   ball.y += ball.velocityy;
 
-  cpu.y+=(ball.y-(cpu.y+cpu.height/2))*0.0988;
+  cpu.y+=(ball.y-(cpu.y+cpu.height/2))*0.1;
 
   if(ball.y + ball.radius>canvas.height || ball.y-ball.radius <0){
     wallsound.play();
@@ -130,7 +130,7 @@ function update(){
     let direction=(ball.x<canvas.width/2)?1:-1;
     ball.velocityx=direction*ball.speed*Math.cos(angleRad);
     ball.velocityy=ball.speed*Math.sin(angleRad);
-    ball.speed+=0.1;
+    ball.speed+=0.3;
   }
 
   if(ball.x-ball.radius<0)
