@@ -130,7 +130,7 @@ function update(){
     let direction=(ball.x<canvas.width/2)?1:-1;
     ball.velocityx=direction*ball.speed*Math.cos(angleRad);
     ball.velocityy=ball.speed*Math.sin(angleRad);
-    ball.speed+=0.3;
+    ball.speed+=0.2;
   }
 
   if(ball.x-ball.radius<0)
