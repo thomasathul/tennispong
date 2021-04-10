@@ -74,7 +74,7 @@ function drawtext(text,x,y,color){
 
 function render(){
 
-      drawrect(0,0,canvas.width,canvas.height,"BLACK");
+      drawrect(0,0,canvas.width,canvas.height,"#282828");
       drawnet();
       drawtext(user.score,canvas.width/4,canvas.height/5,"#8A2BE2");
       drawtext(cpu.score,3*canvas.width/4,canvas.height/5,"#8A2BE2");
