@@ -111,7 +111,7 @@ function update(){
   ball.x += ball.velocityx;
   ball.y += ball.velocityy;
 
-  cpu.y+=(ball.y-(cpu.y+cpu.height/2))*0.078;
+  cpu.y+=(ball.y-(cpu.y+cpu.height/2))*0.08;
 
   if(ball.y + ball.radius>canvas.height || ball.y-ball.radius <0){
     wallsound.play();
