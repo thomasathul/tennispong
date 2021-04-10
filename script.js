@@ -136,6 +136,11 @@ function update(){
   if(ball.x-ball.radius<0)
   {
     cpu.score++;
+    if(cpu.score==11)
+    {
+      user.score=0;
+      cpu.score=0;
+    }
     scoresound.play();
     resetBall();
 
@@ -143,6 +148,11 @@ function update(){
   else if(ball.x+ball.radius>canvas.width)
   {
     user.score++;
+    if(user.score==11)
+    {
+      user.score=0;
+      cpu.score=0;
+    }
     scoresound.play();
     resetBall();
   }
@@ -154,4 +164,4 @@ function gameinit(){
 }
 
 const framePerSecond=50;
-let loop=setInterval(gameinit,1000/framePerSecond);
+setInterval(gameinit,1000/framePerSecond);
