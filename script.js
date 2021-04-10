@@ -1,11 +1,17 @@
 const canvas=document.getElementById("pong");
 const context=canvas.getContext("2d");
+let paddlesound=new Audio();
+let wallsound=new Audio();
+let scoresound=new Audio();
+paddlesound.src="sounds/paddle.mp3";
+wallsound.src="sounds/wall.mp3";
+scoresound.src="sounds/score.mp3";
 const user={
      x:50,
      y:(canvas.height-100)/2,
      width:10,
      height:70,
-     color:"WHITE",
+     color:"#8A2BE2",
      score:0
 }
 const cpu={
@@ -14,7 +20,7 @@ const cpu={
      width:10,
      height:70,
      score:0,
-     color:"WHITE"
+     color:"#8A2BE2"
      
 }
 const ball={
@@ -24,7 +30,7 @@ const ball={
   speed:7,
   velocityx:5,
   velocityy:5,
-  color:"WHITE"
+  color:"#8A2BE2"
 
 }
 const net={
@@ -32,7 +38,7 @@ const net={
   y:0,
   width:1,
   height:8,
-  color:"WHITE"
+  color:"#8A2BE2"
 }
 
 function drawnet(){
@@ -68,8 +74,8 @@ function render(){
 
       drawrect(0,0,canvas.width,canvas.height,"BLACK");
       drawnet();
-      drawtext(user.score,canvas.width/4,canvas.height/5,"WHITE");
-      drawtext(cpu.score,3*canvas.width/4,canvas.height/5,"WHITE");
+      drawtext(user.score,canvas.width/4,canvas.height/5,"#8A2BE2");
+      drawtext(cpu.score,3*canvas.width/4,canvas.height/5,"#8A2BE2");
       drawrect(user.x,user.y,user.width,user.height,user.color);
       drawrect(cpu.x,cpu.y,cpu.width,cpu.height,cpu.color);
       drawball(ball.x,ball.y,ball.radius,ball.color);
@@ -108,12 +114,14 @@ function update(){
   cpu.y+=(ball.y-(cpu.y+cpu.height/2))*0.078;
 
   if(ball.y + ball.radius>canvas.height || ball.y-ball.radius <0){
+    wallsound.play();
   ball.velocityy=-ball.velocityy;
   }
 
   let player=(ball.x<canvas.width/2)?user:cpu;
   if(collision(ball,player))
   {
+    paddlesound.play();
     let collidePoint=ball.y-(player.y+player.height/2);
     collidePoint=collidePoint/(player.height/2);
     let angleRad=collidePoint*Math.PI/4;
@@ -126,12 +134,14 @@ function update(){
   if(ball.x-ball.radius<0)
   {
     cpu.score++;
+    scoresound.play();
     resetBall();
 
   }
   else if(ball.x+ball.radius>canvas.width)
   {
     user.score++;
+    scoresound.play();
     resetBall();
   }
 }
