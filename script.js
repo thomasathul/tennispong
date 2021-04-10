@@ -1,8 +1,10 @@
 const canvas=document.getElementById("pong");
 const context=canvas.getContext("2d");
+
 let paddlesound=new Audio();
 let wallsound=new Audio();
 let scoresound=new Audio();
+
 paddlesound.src="sounds/paddle.mp3";
 wallsound.src="sounds/wall.mp3";
 scoresound.src="sounds/score.mp3";
@@ -111,7 +113,7 @@ function update(){
   ball.x += ball.velocityx;
   ball.y += ball.velocityy;
 
-  cpu.y+=(ball.y-(cpu.y+cpu.height/2))*0.08;
+  cpu.y+=(ball.y-(cpu.y+cpu.height/2))*0.0988;
 
   if(ball.y + ball.radius>canvas.height || ball.y-ball.radius <0){
     wallsound.play();
